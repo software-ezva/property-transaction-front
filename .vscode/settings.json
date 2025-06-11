@@ -1,3 +1,13 @@
 {
-  "conventionalCommits.scopes": ["dependencies", "styles"]
+  "conventionalCommits.scopes": [
+    "dependencies",
+    "styles",
+    "ui",
+    "components",
+    "pages",
+    "layouts",
+    "astro",
+    "config",
+    
+  ]
 }
