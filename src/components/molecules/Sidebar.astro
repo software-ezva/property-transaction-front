@@ -1,0 +1,35 @@
+---
+import Button from "../atoms/Button.astro";
+---
+
+<nav class="border-r bg-white lg:w-64">
+  <div class="space-y-2 p-4">
+    <Button
+      href="/dashboard/agent"
+      variant="link"
+      size="xs"
+      className="w-full text-left"
+      openInNewTab={false}
+    >
+      Dashboard
+    </Button>
+    <Button
+      href="/dashboard/agent/properties"
+      variant="link"
+      size="xs"
+      className="w-full text-left"
+      openInNewTab={false}
+    >
+      Properties
+    </Button>
+    <Button
+      href="/dashboard/agent/clients"
+      variant="link"
+      size="xs"
+      className="w-full text-left"
+      openInNewTab={false}
+    >
+      Clients
+    </Button>
+  </div>
+</nav>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  text: string;
+  size?: "sm" | "md" | "lg";
+  weight?: "light" | "normal" | "bold" | "semi";
+  color?: "primary" | "secondary" | "dark";
+  style?: "compressed" | "normal" | "expanded" | "progressive" | "none";
+  className?: string;
+  href?: string;
+}
+const {
+  text,
+  size = "md",
+  weight = "normal",
+  color = "primary",
+  style = "normal",
+  className,
+  href,
+} = Astro.props;
+const sizes = {
+  sm: "text-sm md:text-base",
+  md: "text-sm sm:text-base lg:text-lg",
+  lg: "text-base md:text-lg lg:text-xl",
+};
+const weights = {
+  light: "font-light",
+  normal: "font-normal",
+  semi: "font-semibold",
+  bold: "font-bold",
+};
+const colors = {
+  primary: "text-primary",
+  secondary: "text-secondary",
+  dark: "text-dark",
+};
+const styles = {
+  compressed: "leading-tight tracking-tight",
+  normal: "leading-normal tracking-normal",
+  expanded: "leading-relaxed tracking-wide",
+  progressive:
+    "leading-tight tracking-tight md:leading-normal md:tracking-normal lg:leading-relaxed lg:tracking-wide",
+  none: "leading-none tracking-none",
+};
+const baseStyle = ``;
+const conbinedStyles = `${baseStyle} ${sizes[size]} ${weights[weight]} ${colors[color]} ${className} ${styles[style]}`;
+---
+
+<h3 class={conbinedStyles}>
+  {
+    href ? (
+      <a href={href} class="hover:underline">
+        {text}
+      </a>
+    ) : (
+      text
+    )
+  }
+</h3>

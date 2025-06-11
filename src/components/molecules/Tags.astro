@@ -1,0 +1,15 @@
+---
+import Tag from "../atoms/Tag.astro";
+const { tags } = Astro.props;
+//<a href={`/tags/${i}`}>
+---
+
+<div class="flex flex-0 flex-wrap gap-1">
+  {
+    tags.map((i: String) => (
+      <a>
+        <Tag className="truncate">{i}</Tag>
+      </a>
+    ))
+  }
+</div>

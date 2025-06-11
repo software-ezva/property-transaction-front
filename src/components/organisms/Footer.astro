@@ -1,0 +1,123 @@
+---
+import SubTitle from "../atoms/SubTitle.astro";
+import Text from "../atoms/Text.astro";
+---
+
+<footer class="bg-card border-border relative mt-16 border-t sm:mt-20">
+  <div
+    class="mx-auto w-full items-center px-4 py-8 text-center sm:px-6 sm:py-12 lg:px-8"
+  >
+    <!-- Footer sections grid -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
+      <!-- Company -->
+      <div class="space-y-4">
+        <SubTitle
+          text="Company"
+          size="sm"
+          weight="semi"
+          color="dark"
+          className="tracking-wider uppercase"
+        />
+        <ul class="space-y-2 sm:space-y-3">
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >About</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Product -->
+      <div class="space-y-4">
+        <SubTitle
+          text="Product"
+          size="sm"
+          weight="semi"
+          color="dark"
+          className="tracking-wider uppercase"
+        />
+        <ul class="space-y-2 sm:space-y-3">
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Features</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >FAQ</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="space-y-4">
+        <SubTitle
+          text="Resources"
+          size="sm"
+          weight="semi"
+          color="dark"
+          className="tracking-wider uppercase"
+        />
+        <ul class="space-y-2 sm:space-y-3">
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Blog</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Documentation</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="space-y-4">
+        <SubTitle
+          text="Legal"
+          size="sm"
+          weight="semi"
+          color="dark"
+          className="tracking-wider uppercase"
+        />
+        <ul class="space-y-2 sm:space-y-3">
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Privacy</a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors sm:text-base"
+              >Terms</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright section -->
+    <div class="border-border mt-8 border-t pt-6 sm:mt-12 sm:pt-8">
+      <Text
+        text="© 2025 BenchMark Real Estate. All rights reserved."
+        size="sm"
+        color="dark"
+        className="text-muted-foreground text-center"
+      />
+    </div>
+  </div>
+</footer>

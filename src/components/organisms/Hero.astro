@@ -1,0 +1,93 @@
+---
+import Button from "../atoms/Button.astro";
+import fotoPerfl from "@/assets/photoLandingPage.jpg";
+import { Image } from "astro:assets";
+
+// Props interface
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+
+const {
+  title = "Simplify your",
+  subtitle = "real estate transactions",
+  description = "Streamline property deals with our intuitive platform designed for real estate professionals and clients alike. Manage documents, track progress, and close deals faster.",
+} = Astro.props;
+
+// URLs y recursos fijos
+const loginUrl = "/login";
+const contactUrl = "#contact";
+---
+
+<!-- Hero Section -->
+<main class="grid w-full grid-cols-1 bg-white lg:grid-cols-2">
+  <!-- Text Section - Left half -->
+  <div
+    class="order-2 flex flex-col justify-center px-4 py-2 sm:px-6 md:px-8 lg:order-1 lg:px-12 lg:py-4 xl:px-16"
+  >
+    <h1
+      class="text-3xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+    >
+      <span class="block">{title}</span>
+      <span class="block text-blue-600">{subtitle}</span>
+    </h1>
+    <p
+      class="mt-4 max-w-xl text-sm leading-relaxed text-gray-500 sm:mt-5 sm:text-base md:mt-6 md:text-lg lg:text-xl"
+    >
+      {description}
+    </p>
+    <div class="xs:flex-row mt-6 flex flex-col gap-3 sm:mt-7 sm:gap-4 md:mt-8">
+      <Button
+        href={loginUrl}
+        variant="primary"
+        size="medium"
+        className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+      >
+        Login
+      </Button>
+      <Button
+        href={contactUrl}
+        variant="secondary"
+        size="medium"
+        className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+      >
+        Contact Us
+      </Button>
+    </div>
+  </div>
+
+  <div class="order-1 h-64 w-full sm:h-80 md:h-96 lg:order-2 lg:h-full">
+    <Image
+      src={fotoPerfl}
+      alt="Property transaction platform interface"
+      class="h-full w-full"
+      width={600}
+      height={800}
+      format="webp"
+      quality={85}
+      loading="eager"
+    />
+    <!-- Optional: Add a subtle gradient overlay -->
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/5"
+    >
+    </div>
+  </div>
+</main>
+
+<!-- Custom styles for extra small screens -->
+<style>
+  @media (min-width: 475px) {
+    .xs\:flex-row {
+      flex-direction: row;
+    }
+    .xs\:w-auto {
+      width: auto;
+    }
+    .xs\:min-w-\[120px\] {
+      min-width: 120px;
+    }
+  }
+</style>

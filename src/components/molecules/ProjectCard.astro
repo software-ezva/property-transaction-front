@@ -1,0 +1,35 @@
+---
+import Card from "./Card.astro";
+
+interface Props {
+  key: string;
+  href: string;
+  heading: string;
+  description: string;
+  altText: string;
+  imagePath: string;
+}
+
+const { href, heading, description, altText, imagePath } = Astro.props;
+---
+
+<a href={href}>
+  <Card
+    className={`align-start perspective-1200 group relative flex-none transform justify-start overflow-hidden p-0 shadow-lg transition duration-75 ease-in-out ${href ? "hover:border-primary cursor-pointer" : ""} `}
+  >
+    <img
+      src={imagePath}
+      alt={altText}
+      class="h-48 w-full rounded-2xl rounded-br-none rounded-bl-none object-cover"
+      loading="eager"
+    />
+    <div class="flex flex-col gap-y-0.5 px-5 py-4">
+      <h3
+        class="text-primary line-clamp-1 text-center text-base font-bold md:text-xl"
+      >
+        {heading}
+      </h3>
+      <h4 class="line-clamp-3">{description}</h4>
+    </div>
+  </Card>
+</a>

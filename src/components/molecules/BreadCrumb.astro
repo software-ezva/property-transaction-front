@@ -1,0 +1,48 @@
+---
+const url = new URL(Astro.request.url);
+const pathname = url.pathname;
+const segments = pathname.split("/").filter(Boolean);
+const links = [{ href: "/", text: "Home" }];
+
+segments.forEach((segment, index) => {
+  const href = `/${segments.slice(0, index + 1).join("/")}`;
+  const text = segment
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+  links.push({ href, text });
+});
+---
+
+<nav aria-label="Breadcrumb">
+  <ol class="items-center space-x-1 md:space-x-2">
+    {
+      links.map((link, index) => (
+        <li class="inline-flex items-center">
+          {index === links.length - 1 ? (
+            <span class="text-sm">{link.text}</span>
+          ) : (
+            <>
+              <a href={link.href} class="text-sm hover:underline">
+                {link.text}
+              </a>
+              {index < links.length - 1 && (
+                <svg
+                  class="text-ring h-5 w-3"
+                  fill="currentColor"
+                  viewBox="0 0 13 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              )}
+            </>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

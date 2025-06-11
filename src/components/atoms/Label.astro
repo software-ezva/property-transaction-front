@@ -1,0 +1,18 @@
+---
+const {
+  class: className,
+  as: Tag = "div",
+  title,
+  href,
+  ...props
+} = Astro.props;
+---
+
+<Tag
+  class="gap-x-2'href && 'hover:opacity-75 flex flex-row items-center justify-center transition-all"
+  href={href}
+  {...props}
+>
+  <slot name="icon" />
+  <p>{title}</p>
+</Tag>

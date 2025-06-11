@@ -1,0 +1,55 @@
+---
+interface Props {
+  variant?: "primary" | "secondary" | "link";
+  size?: "small" | "medium" | "large" | "xs" | "large_without_margin";
+  href?: string;
+  className?: string;
+  openInNewTab?: boolean;
+}
+
+const {
+  variant = "primary",
+  size = "medium",
+  href,
+  className,
+  openInNewTab = true,
+} = Astro.props;
+
+const baseStyles = "rounded-md focus:outline-none focus:ring";
+const variantStyles = {
+  primary: "bg-primary text-primary-foreground hover:bg-secondary ",
+  secondary:
+    "bg-secondary text-secondary-foreground hover:bg-tertiary hover:text-tertiary-foreground",
+  link: "text-primary underline-offset-4 hover:underline text-opacity-80 text-sm",
+};
+const sizeStyles = {
+  xs: "px-2 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm md:px-4 md:py-2 md:text-base lg:px-5 lg:py-2.5 lg:text-lg xl:px-6 xl:py-3 xl:text-xl",
+  small:
+    "px-3 py-2 text-sm sm:px-4 sm:py-2.5 sm:text-base md:px-5 md:py-3 md:text-lg lg:px-6 lg:py-3.5 lg:text-xl xl:px-7 xl:py-4 xl:text-2xl",
+  medium:
+    "px-5 py-3 text-base sm:px-6 sm:py-3.5 sm:text-lg md:px-7 md:py-4 md:text-xl lg:px-8 lg:py-4.5 lg:text-2xl xl:px-9 xl:py-5 xl:text-3xl",
+  large:
+    "px-7 py-3 text-lg sm:px-8 sm:py-3.5 sm:text-xl md:px-9 md:py-4 md:text-2xl lg:px-10 lg:py-4.5 lg:text-3xl xl:px-11 xl:py-5 xl:text-4xl",
+  large_without_margin:
+    "px-3 py-3 lg:p-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ",
+};
+
+const combinedStyles = `${baseStyles} ${className} ${variantStyles[variant]} ${sizeStyles[size]}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={combinedStyles}
+      target={openInNewTab ? "_blank" : undefined}
+      rel={openInNewTab ? "noopener noreferrer" : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button class={combinedStyles}>
+      <slot />
+    </button>
+  )
+}
