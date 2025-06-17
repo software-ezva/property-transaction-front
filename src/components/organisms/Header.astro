@@ -24,14 +24,84 @@ import Title from "../atoms/Title.astro";
 
     <!-- Navigation -->
     <nav class="flex items-center space-x-2 sm:space-x-4">
-      <Button variant="primary" size="xs" href="/login" openInNewTab={false}>
-        <span class="hidden sm:inline">Login</span>
-        <span class="sm:hidden">Log</span>
-      </Button>
-      <Button variant="primary" size="xs" href="/signup" openInNewTab={false}>
-        <span class="hidden sm:inline">Sign Up</span>
-        <span class="sm:hidden">Join</span>
-      </Button>
+      <!-- Guest navigation -->
+      <div id="guest-nav" class="flex items-center space-x-2 sm:space-x-4">
+        <Button variant="secondary" size="xs" dataAction="login" id="login-btn">
+          <span class="hidden sm:inline">Login</span>
+          <span class="sm:hidden">Log</span>
+        </Button>
+        <Button variant="primary" size="xs" dataAction="signup" id="signup-btn">
+          <span class="hidden sm:inline">Sign Up</span>
+          <span class="sm:hidden">Join</span>
+        </Button>
+      </div>
+
+      <!-- Auth navigation -->
+      <div
+        id="auth-nav"
+        class="flex hidden items-center space-x-2 sm:space-x-4"
+      >
+        <span id="user-name" class="hidden text-sm text-gray-700 sm:inline"
+        ></span>
+        <Button variant="primary" size="xs" href="/dashboard">
+          <span class="hidden sm:inline">Dashboard</span>
+          <span class="sm:hidden">Panel</span>
+        </Button>
+        <Button
+          variant="secondary"
+          size="xs"
+          dataAction="logout"
+          id="logout-btn"
+        >
+          <span class="hidden sm:inline">Logout</span>
+          <span class="sm:hidden">Exit</span>
+        </Button>
+      </div>
     </nav>
   </div>
 </header>
+
+<script>
+  import { authService } from "src/services/AuthService";
+
+  const handleLogin = async (event) => {
+    console.log("handleLogin called!", event);
+    event.preventDefault();
+    const button = event.currentTarget;
+    const originalText = button.textContent;
+
+    try {
+      console.log("Starting login process...");
+      button.disabled = true;
+      button.textContent = "Cargando...";
+
+      const data = await authService.login();
+      console.log("Login response:", data);
+
+      if (data.success && data.data?.authorization_url) {
+        console.log("Redirecting to:", data.data.authorization_url);
+        window.location.href = data.data.authorization_url;
+      } else {
+        console.error("Login failed:", data);
+        alert("Error iniciando sesión");
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Error de conexión");
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  };
+
+  // Event listeners
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginBtn = document.getElementById("login-btn");
+    if (loginBtn) {
+      loginBtn.addEventListener("click", handleLogin);
+    }
+
+    // Agregar otros event listeners según necesites
+  });
+</script>

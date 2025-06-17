@@ -35,6 +35,35 @@
   --dark: 20, 14.3%, 4.1%;
   --white: 0, 0%, 100%;
   --black: 0, 0%, 0%;
+
+  --font-primary: "Jost", "Segoe UI", sans-serif;
+  --font-secondary: "Rubik", "Arial", sans-serif;
+  --font-tertiary: "Quicksand", "Verdana", sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-secondary);
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+.font-tertiary {
+  font-family: var(--font-tertiary);
 }
 
 .text-primary {

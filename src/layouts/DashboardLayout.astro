@@ -1,10 +1,74 @@
 ---
+// filepath: src/layouts/DashboardLayout.astro
 import Layout from "./Layout.astro";
-import SideBar from "../components/molecules/Sidebar.astro";
-import Welcome from "src/components/molecules/Welcome.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const user = Astro.locals.user!;
+const userType = user.userType;
+
+const agentNav = [
+  { href: "/dashboard/agent", label: "Dashboard", icon: "📊" },
+  { href: "/dashboard/agent/properties", label: "Properties", icon: "🏠" },
+  { href: "/dashboard/agent/clients", label: "Clients", icon: "👥" },
+];
+
+const clientNav = [
+  { href: "/dashboard/client", label: "Dashboard", icon: "📊" },
+  { href: "/dashboard/client/properties", label: "My Properties", icon: "🏠" },
+  { href: "/dashboard/client/favorites", label: "Favorites", icon: "❤️" },
+];
+
+const navigation = userType === "agent" ? agentNav : clientNav;
 ---
 
-<Layout title="Dashboard">
-  <SideBar />
-  <Welcome />
+<Layout title={title || "Dashboard"}>
+  <div class="flex min-h-screen">
+
+    <nav class="w-64 border-r bg-white p-4">
+      <div class="mb-6">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase">
+          {userType === "agent" ? "Real Estate Agent" : "Client"}
+        </h3>
+        <div class="mt-2">
+          <div class="font-medium">{user.name}</div>
+          <div class="text-sm text-gray-500">{user.email}</div>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              class="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-50"
+            >
+              <span>{item.icon}</span>
+              <span>{item.label}</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 border-t pt-4">
+        <a
+          href="/logout"
+          class="block w-full rounded bg-gray-100 px-4 py-2 text-center hover:bg-gray-200"
+        >
+          Logout
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="mb-6 text-2xl font-bold">
+        Welcome back, {user.name}!
+      </h1>
+      <slot />
+    </main>
+  </div>
 </Layout>

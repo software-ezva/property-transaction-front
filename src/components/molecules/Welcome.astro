@@ -1,12 +1,31 @@
 ---
 import Title from "../atoms/Title.astro";
 import Text from "../atoms/Text.astro";
+
+interface Props {
+  userType?: "agent" | "client";
+}
+
+const { userType = "agent" } = Astro.props;
+
+const welcomeMessages = {
+  agent: {
+    title: "Welcome back, Agent!",
+    subtitle: "Here's what's happening with your properties today."
+  },
+  client: {
+    title: "Welcome back!",
+    subtitle: "Track your property transactions and favorites here."
+  }
+};
+
+const message = welcomeMessages[userType];
 ---
 
 <div class="mb-6">
-  <Title text="Welcome back, Agent!" size="lg" weight="bold" color="dark" />
+  <Title text={message.title} size="lg" weight="bold" color="dark" />
   <Text
-    text="Here's what's happening with your properties today."
+    text={message.subtitle}
     size="md"
     color="dark"
     className="mt-2"

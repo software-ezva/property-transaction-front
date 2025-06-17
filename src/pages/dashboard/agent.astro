@@ -1,0 +1,23 @@
+---
+import DashboardLayout from "src/layouts/DashboardLayout.astro";
+---
+
+<DashboardLayout userType="agent" title="Agent Dashboard">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Agent-specific dashboard content -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="font-semibold text-lg mb-2">Active Listings</h3>
+      <p class="text-3xl font-bold text-blue-600">24</p>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="font-semibold text-lg mb-2">Pending Transactions</h3>
+      <p class="text-3xl font-bold text-green-600">8</p>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="font-semibold text-lg mb-2">Total Clients</h3>
+      <p class="text-3xl font-bold text-purple-600">156</p>
+    </div>
+  </div>
+</DashboardLayout>

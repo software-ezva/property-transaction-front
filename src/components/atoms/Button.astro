@@ -5,6 +5,8 @@ interface Props {
   href?: string;
   className?: string;
   openInNewTab?: boolean;
+  id?: string;
+  dataAction?: string; 
 }
 
 const {
@@ -13,6 +15,8 @@ const {
   href,
   className,
   openInNewTab = true,
+  id = "",
+  dataAction,
 } = Astro.props;
 
 const baseStyles = "rounded-md focus:outline-none focus:ring";
@@ -35,6 +39,8 @@ const sizeStyles = {
 };
 
 const combinedStyles = `${baseStyles} ${className} ${variantStyles[variant]} ${sizeStyles[size]}`;
+
+const buttonId = dataAction ? (id || `btn-${Math.random().toString(36).substr(2, 9)}`) : id;
 ---
 
 {
@@ -44,11 +50,16 @@ const combinedStyles = `${baseStyles} ${className} ${variantStyles[variant]} ${s
       class={combinedStyles}
       target={openInNewTab ? "_blank" : undefined}
       rel={openInNewTab ? "noopener noreferrer" : undefined}
+      id={buttonId}
     >
       <slot />
     </a>
   ) : (
-    <button class={combinedStyles}>
+    <button 
+      class={combinedStyles} 
+      id={buttonId}
+      data-action={dataAction}
+    >
       <slot />
     </button>
   )

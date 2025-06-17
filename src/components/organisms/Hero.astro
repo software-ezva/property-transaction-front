@@ -15,10 +15,6 @@ const {
   subtitle = "real estate transactions",
   description = "Streamline property deals with our intuitive platform designed for real estate professionals and clients alike. Manage documents, track progress, and close deals faster.",
 } = Astro.props;
-
-// URLs y recursos fijos
-const loginUrl = "/login";
-const contactUrl = "#contact";
 ---
 
 <!-- Hero Section -->
@@ -38,31 +34,64 @@ const contactUrl = "#contact";
     >
       {description}
     </p>
+
+    <!-- Botones dinámicos según estado de auth -->
     <div class="xs:flex-row mt-6 flex flex-col gap-3 sm:mt-7 sm:gap-4 md:mt-8">
-      <Button
-        href={loginUrl}
-        variant="primary"
-        size="medium"
-        className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+      <!-- Para usuarios no autenticados -->
+      <div
+        id="hero-guest-buttons"
+        class="xs:flex-row flex flex-col gap-3 sm:gap-4"
       >
-        Login
-      </Button>
-      <Button
-        href={contactUrl}
-        variant="secondary"
-        size="medium"
-        className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+        <Button
+          variant="primary"
+          size="medium"
+          className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+          id="hero-login-btn"
+        >
+          Get Started
+        </Button>
+        <Button
+          href="#contact"
+          variant="secondary"
+          size="medium"
+          className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+        >
+          Contact Us
+        </Button>
+      </div>
+
+      <!-- Para usuarios autenticados -->
+      <div
+        id="hero-auth-buttons"
+        class="xs:flex-row hidden flex-col gap-3 sm:gap-4"
       >
-        Contact Us
-      </Button>
+        <Button
+          href="/dashboard"
+          variant="primary"
+          size="medium"
+          className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+        >
+          Go to Dashboard
+        </Button>
+        <Button
+          href="#features"
+          variant="secondary"
+          size="medium"
+          className="xs:w-auto xs:min-w-[120px] w-full sm:min-w-[140px]"
+        >
+          Learn More
+        </Button>
+      </div>
     </div>
   </div>
 
-  <div class="order-1 h-64 w-full sm:h-80 md:h-96 lg:order-2 lg:h-full">
+  <div
+    class="relative order-1 h-64 w-full sm:h-80 md:h-96 lg:order-2 lg:h-full"
+  >
     <Image
       src={fotoPerfl}
       alt="Property transaction platform interface"
-      class="h-full w-full"
+      class="h-full w-full object-cover"
       width={600}
       height={800}
       format="webp"
@@ -91,3 +120,4 @@ const contactUrl = "#contact";
     }
   }
 </style>
+

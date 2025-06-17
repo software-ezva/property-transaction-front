@@ -1,0 +1,18 @@
+---
+import DashboardLayout from "src/layouts/DashboardLayout.astro";
+---
+
+<DashboardLayout userType="client" title="Client Dashboard">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Client-specific dashboard content -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="font-semibold text-lg mb-2">My Properties</h3>
+      <p class="text-3xl font-bold text-blue-600">3</p>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h3 class="font-semibold text-lg mb-2">Favorite Properties</h3>
+      <p class="text-3xl font-bold text-red-600">12</p>
+    </div>
+  </div>
+</DashboardLayout>
